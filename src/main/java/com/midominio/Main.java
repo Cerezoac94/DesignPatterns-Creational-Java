@@ -1,11 +1,13 @@
 package com.midominio;
 
-//import com.midominio.creational.builder.Card;
-//import com.midominio.creational.builder2.builders.CardBuilder;
-//import com.midominio.creational.builder2.director.Director;
-import com.midominio.creational.builder3.builders.CardBuilder;
-import com.midominio.creational.builder3.cards.Card;
-import com.midominio.creational.builder3.cards.CardType;
+
+//import com.midominio.creational.prototype.IPrototypeCard;
+//import com.midominio.creational.prototype.PrototypeFactory;
+//import static com.midominio.creational.prototype.PrototypeFactory.CardType.AMEX;
+//import static com.midominio.creational.prototype.PrototypeFactory.CardType.VISA;
+
+import com.midominio.creational.prototype2.Amex;
+import com.midominio.creational.prototype2.Visa;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,35 +15,28 @@ public class Main {
     }
 
     private static void testPattern(){
-//       Card card = new Card.CardBuilder("VISA", "0000 1111 2222 3333")
-//               .name("Jorge")
-//               .expires(2030)
-//               .credit(true)
-//               .build();
-//        System.out.println(card);
-//
-//        Card card2 = new Card.CardBuilder("AMEX", "9999 9999 9999 9999")
-//                .build();
-//        System.out.println(card2);
+//        PrototypeFactory.loadCard();
+//        try {
+//            IPrototypeCard visa = PrototypeFactory.getInstance(VISA);
+//            visa.getCard();
+//            IPrototypeCard amex = PrototypeFactory.getInstance(AMEX);
+//            amex.getCard();
+//        } catch (CloneNotSupportedException ex){
+//            ex.printStackTrace();
+//        }
 
-        //builder 2
-//        Director director = new Director();
-//        CardBuilder builder = new CardBuilder();
-//        director.constructCard(builder, CardType.VISA, "0000 0000 0000 0000", "Jorge", 2030, false);
-//        Card card = builder.getResult();
-//
-//        director.constructCard(builder, CardType.VISA, "0000 0000 0000 0001", "Antonio", 2030, true);
-//        Card card2 = builder.getResult();
-//        System.out.println(card);
-//        System.out.println(card2);
+        //prototype 2
+        Visa visa = new Visa();
+        visa.setName("Esta es una tarjeta Visa");
+        visa.getCard();
+        Visa visa2 = (Visa) visa.clone();
+        visa2.getCard();
+        visa.getName();
 
-
-//        builder 3
-        Card card = new CardBuilder(CardType.VISA, "0000 0000 0000 0000")
-                .name("José")
-                .expires(2028)
-                .credit(false)
-                .build();
-        System.out.println(card);
+        Amex amex = new Amex();
+        amex.setName("Esta es una tarjeta American Express");
+        Amex amex2 = (Amex) amex.clone();
+        amex2.getCard();
+        amex2.getName();
     }
 }
